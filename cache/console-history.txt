@@ -1,0 +1,51 @@
+await token.balanceOf("0x70997970c51812dc3a010c7d01b50e0d17dc79c8", 0)
+await token.safeTransferFrom("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", "0x70997970c51812dc3a010c7d01b50e0d17dc79c8", 0, 1, 0x00)
+await token.balanceOf("0x70997970c51812dc3a010c7d01b50e0d17dc79c8", 0)
+token.balanceOf("0x70997970c51812dc3a010c7d01b50e0d17dc79c8", 0)
+token.balanceOf(0x70997970c51812dc3a010c7d01b50e0d17dc79c8, 0)
+token.balanceOf(0x70997970c51812dc3a010c7d01b50e0d17dc79c8)
+token.getBalanceOf(0x70997970c51812dc3a010c7d01b50e0d17dc79c8)
+token.getBalanceOf
+token
+await token.safeTransferFrom("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", "0x70997970c51812dc3a010c7d01b50e0d17dc79c8", 0, 1, 0x00)
+await token.safeTransferFrom(0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266, 0x70997970c51812dc3a010c7d01b50e0d17dc79c8, 0, 1, 0x00)
+await token.safeTransferFrom
+token
+token.methods
+dir(token)
+;
+token.
+_safeTransferFrom()
+await token._safeTransferFrom(0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266, 10)
+await token.transfer(0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266, 10)
+await token.transfer(msg.sender, 10)
+await token.transfer(msg.sender
+await token.transfer
+const token = await Token.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3")
+    const Token = await ethers.getContractFactory("GameItems");
+token
+token.address
+token.addresss\
+token.addresss
+token
+token = await Token.deploy()
+await Token.deploy
+Token.deploy
+Token
+token
+const Token = await ethers.getContractFactory("Token");
+token
+transfer
+console.log(balances)
+balances
+token
+console.log('bruh')
+asd
+balanceOf()
+ls
+balances
+deployer
+config
+token
+token.address
+console.log('bruh')
