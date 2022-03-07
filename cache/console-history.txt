@@ -1,3 +1,35 @@
+farm.totalSupply()
+farm
+const farm = await Farm.deploy();
+Farm.deploy();
+Farm
+const Farm = await ethers.getContractFactory("CropFarm");
+await farm.safeTransferFrom(0x00, 0x00, 0, 0, 0x00)
+await farm.safeTransferFrom(0x00, 0x00, 0, 0)
+farm.safeTransferFrom(0x00, 0x00, 0, 0)
+farm._safeTransferFrom(0x00, 0x00, 0, 0)
+farm._safeTransferFrom
+farm._balances[0]
+farm._balances(0)
+farm._balances
+farm.Balance
+farm.totalSupply(0)
+farm.totalSupply()
+const farm = await Farm.deploy();
+const Farm = await ethers.getContractFactory("CropFarm");
+token._balances[0][0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266]
+token._balances
+_
+_balances
+await token.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 6)
+await token.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 4)
+await token.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 3)
+await token.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 2)
+await token.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1)
+await token.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0)
+token.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0)
+const token = await Token.attach("0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512")
+const Token = await ethers.getContractFactory("GameItems")
 await token.balanceOf("0x70997970c51812dc3a010c7d01b50e0d17dc79c8", 0)
 await token.safeTransferFrom("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", "0x70997970c51812dc3a010c7d01b50e0d17dc79c8", 0, 1, 0x00)
 await token.balanceOf("0x70997970c51812dc3a010c7d01b50e0d17dc79c8", 0)
