@@ -12,12 +12,12 @@ contract CropFarm is ERC1155, ERC1155Supply {
     uint256 public constant PUMPKIN = 3;
 
     constructor() ERC1155("https://game.example/api/item/{id}.json") {
-        _mint(msg.sender, WHEAT, 10**18, "");
-        _mint(msg.sender, CARROT, 10**27, "");
-        _mint(msg.sender, MELON, 1, "");
-        _mint(msg.sender, PUMPKIN, 10**9, "");
+        _mint(msg.sender, WHEAT, 1000, "");
+        _mint(msg.sender, CARROT, 1000, "");
+        _mint(msg.sender, MELON, 1000, "");
+        _mint(msg.sender, PUMPKIN, 1000, "");
 
-        _balances[0][msg.sender].totalBalance = 10**18;
+        _balances[0][msg.sender].totalBalance = 1000;
     }
 
     struct Balance {
@@ -25,12 +25,10 @@ contract CropFarm is ERC1155, ERC1155Supply {
         uint256 stakedBalance;
         uint256 stakeDate;
     }
-    // All normal mint / burn / transfer will read from totalBalance
-    // during staking, you move quantities away from totalBalance to stakedBalance
 
     mapping(uint256 => mapping(address => Balance)) internal _balances;
 
-    //       ^ crop id          ^ user      ^ amount
+    //       ^ crop id          ^ user
 
     function _safeTransferFrom(
         address from,
@@ -70,6 +68,21 @@ contract CropFarm is ERC1155, ERC1155Supply {
         } else {
             return 0;
         }
+    }
+
+    function plant(
+        uint256 _id,
+        uint256 _amount,
+        uint256 _plot
+    ) public {
+        require(
+            _balances[_id][msg.sender].totalBalance >= _amount,
+            "Not enough crops to plant!"
+        );
+        // require(_plot == 0, "This plot is not empty!");
+        _balances[_id][msg.sender].stakeDate = block.timestamp;
+        _balances[_id][msg.sender].totalBalance -= _amount;
+        _balances[_id][msg.sender].stakedBalance += _amount;
     }
 
     // The following functions are overrides required by Solidity. BASICALLY need this bc of ERC1155Supply

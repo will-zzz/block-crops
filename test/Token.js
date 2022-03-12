@@ -49,6 +49,12 @@ describe("Token contract", function () {
       //   ).toString() + " tokens of ID 0 in mapping."
       // );
     });
-    it("bruhs");
+    it("Plants crops", async function () {
+      await farm.plant(0, 100, 0);
+      console.log(
+        "The time is: " +
+          (await farm.viewValues(owner.address, 0, 2)).toString()
+      );
+    });
   });
 });
