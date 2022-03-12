@@ -15,7 +15,7 @@ describe("Token contract", function () {
 
   describe("Deployment", function () {
     it("Assigns right number of crops", async function () {
-      for (let i = 0; i <= 3; i++) {
+      for (let i = 1; i <= 4; i++) {
         let ownerBalance = await farm.balanceOf(owner.address, i);
         expect(await farm.totalSupply(i)).to.equal(ownerBalance);
         // console.log("There are " + ownerBalance.toString() + " tokens with ID " + i);
@@ -25,8 +25,8 @@ describe("Token contract", function () {
     it("Transfers crops", async function () {
       await farm
         .connect(owner)
-        .safeTransferFrom(owner.address, addr1.address, 0, 50, 0x00);
-      expect(await farm.balanceOf(addr1.address, 0)).to.equal(50);
+        .safeTransferFrom(owner.address, addr1.address, 1, 50, 0x00);
+      expect(await farm.balanceOf(addr1.address, 1)).to.equal(50);
       // // TOKEN / MAPPING VALUES AFTER TRANSFER
       // console.log(
       //   "Owner has " +

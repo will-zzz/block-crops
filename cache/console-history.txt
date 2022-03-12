@@ -1,3 +1,33 @@
+await farm.plant(1, 6);
+await farm.plant(1, 4);
+    farm = await Farm.deploy();
+Farm = await ethers.getContractFactory("CropFarm");
+await farm.plant(1, 6);
+await farm.plant(1, 4);
+await farm.plant(1, 1);
+await farm.plant(6, 1);
+await farm.plant(6, 0);
+await farm.plant(3, 0);
+await farm.plant(2, 0);
+await farm.plant(1, 0);
+    farm = await Farm.deploy();
+Farm = await ethers.getContractFactory("CropFarm");
+await farm.plant(1, 0);
+farm.plant(1, 0);
+    farm = await Farm.deploy();
+Farm = await ethers.getContractFactory("CropFarm");
+await farm.plant(1, 0)
+clear
+await farm.plant(1, 0)
+farm._balances[0][msg.sender]
+_balances[0][msg.sender]
+_balances
+msg.sender
+await farm.plant(0, 0)
+farm.plant(0, 0)
+farm.plant
+    farm = await Farm.deploy();
+Farm = await ethers.getContractFactory("CropFarm");
 farm.totalSupply()
 farm
 const farm = await Farm.deploy();
