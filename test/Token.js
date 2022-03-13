@@ -21,7 +21,8 @@ describe("Token contract", function () {
         // console.log("There are " + ownerBalance.toString() + " tokens with ID " + i);
       }
     });
-
+  });
+  describe("Using crops", function () {
     it("Transfers crops", async function () {
       await farm
         .connect(owner)
@@ -50,11 +51,15 @@ describe("Token contract", function () {
       // );
     });
     it("Plants crops", async function () {
-      await farm.plant(0, 100, 0);
-      console.log(
-        "The time is: " +
-          (await farm.viewValues(owner.address, 0, 2)).toString()
-      );
+      await farm.plant(0, 1);
+      expect(await farm.viewPlot(owner.address, 0)).to.equal(1);
+    });
+  });
+  describe("Account info", function () {
+    it("Buys new plots", async function () {
+      await farm.plant(0, 1);
+      await farm._newPlot(owner.address);
+      expect(await farm._plotNum(owner.address)).to.equal(4);
     });
   });
 });

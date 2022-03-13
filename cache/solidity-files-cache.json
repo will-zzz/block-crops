@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/wcomputer/codeProjects/crops/contracts/Token.sol": {
-      "lastModificationDate": 1647102957531,
-      "contentHash": "4dad88ae4717e4f9bcbeb4c358d04d6b",
+      "lastModificationDate": 1647146634092,
+      "contentHash": "eda921f8e8dd590f297abb08c218615d",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.1",
@@ -30,7 +30,8 @@
       },
       "imports": [
         "@openzeppelin/contracts/token/ERC1155/ERC1155.sol",
-        "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol"
+        "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         ">=0.8.0 <0.9.0"
@@ -44,7 +45,7 @@
       "contentHash": "cc4777addd464ea56fa35b1c45df0591",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
-        "version": "0.7.3",
+        "version": "0.8.1",
         "settings": {
           "optimizer": {
             "enabled": false,
