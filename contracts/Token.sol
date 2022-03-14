@@ -4,6 +4,7 @@ pragma solidity >=0.8.0 <0.9.0;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
+import "@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol";
 import "hardhat/console.sol";
 
 contract CropFarm is ERC1155, ERC1155Supply {
@@ -137,8 +138,17 @@ contract CropFarm is ERC1155, ERC1155Supply {
         delete _plots[msg.sender].crops[_plot];
     }
 
+    function buyPlot() public {
+        require(
+            _plotNum[msg.sender] >= 3,
+            "User must plant crops once before purchasing plots!"
+        );
+        _safeTransferFrom(msg.sender, address(this), WHEAT, 10, "");
+        _newPlot(msg.sender);
+    }
+
     // change to internal for deployment
-    function _newPlot(address _account) public {
+    function _newPlot(address _account) internal {
         require(_plotNum[_account] <= 10, "Can't increase number of plots.");
         _plotNum[_account] += 1;
     }
@@ -153,5 +163,16 @@ contract CropFarm is ERC1155, ERC1155Supply {
         bytes memory data
     ) internal override(ERC1155, ERC1155Supply) {
         super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
+    }
+
+    // lets users send crops to this contract
+    function onERC1155Received(
+        address,
+        address,
+        uint256,
+        uint256,
+        bytes memory
+    ) public virtual returns (bytes4) {
+        return this.onERC1155Received.selector;
     }
 }

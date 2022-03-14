@@ -50,16 +50,21 @@ describe("Token contract", function () {
       //   ).toString() + " tokens of ID 0 in mapping."
       // );
     });
-    it("Plants crops", async function () {
+    it("Plants / harvests crops", async function () {
       await farm.plant(0, 1);
       expect(await farm.viewPlot(owner.address, 0)).to.equal(1);
+      await network.provider.send("evm_increaseTime", [25]);
+      await farm.harvest(0);
+      expect(await farm.viewPlot(owner.address, 0)).to.equal(0);
+      expect(await farm.viewBalance(owner.address, 1, 0)).to.equal(1001);
     });
   });
   describe("Account info", function () {
     it("Buys new plots", async function () {
       await farm.plant(0, 1);
-      await farm._newPlot(owner.address);
+      await farm.buyPlot();
       expect(await farm._plotNum(owner.address)).to.equal(4);
+      expect(await farm.balanceOf(farm.address, 1)).to.equal(10);
     });
   });
 });
