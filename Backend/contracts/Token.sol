@@ -20,6 +20,12 @@ contract CropFarm is ERC1155, ERC1155Supply {
         _mint(msg.sender, MELON, 1000, "");
         _mint(msg.sender, PUMPKIN, 1000, "");
 
+        int256[] cropInit;
+        // for # of crops {
+        //     for # of attributes {
+        //          set each attribute
+        //     }
+        // }
         _balances[msg.sender][WHEAT].totalBalance = 1000;
         _balances[msg.sender][CARROT].totalBalance = 1000;
         _balances[msg.sender][MELON].totalBalance = 1000;

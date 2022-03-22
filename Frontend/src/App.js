@@ -1,6 +1,5 @@
+import Farm from "./Farm.js";
 import logo from "./logo.svg";
-import "./App.css";
-import Canvas from "./Canvas.js";
 
 // function getLogo() {
 //   if (window.chrome) {
@@ -11,7 +10,7 @@ import Canvas from "./Canvas.js";
 // }
 
 function App() {
-  return <Canvas />;
+  return <Farm />;
 }
 
 export default App;
