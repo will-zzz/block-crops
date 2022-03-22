@@ -20,12 +20,41 @@ contract CropFarm is ERC1155, ERC1155Supply {
         _mint(msg.sender, MELON, 1000, "");
         _mint(msg.sender, PUMPKIN, 1000, "");
 
-        int256[] cropInit;
-        // for # of crops {
-        //     for # of attributes {
-        //          set each attribute
-        //     }
-        // }
+        uint8[15] memory cropInitInt = [
+            0,
+            0,
+            0,
+            1,
+            10,
+            3,
+            2,
+            10,
+            5,
+            3,
+            10,
+            1,
+            4,
+            10,
+            1
+        ];
+        string[5] memory cropInitString = [
+            "",
+            "Wheat",
+            "Carrot",
+            "Melon",
+            "Pumpkin"
+        ];
+        //SETUP INT VALUES
+        // for # of crops
+        for (uint256 i = 1; i <= 4; i += 1) {
+            _crops[i].id = cropInitInt[i * 3];
+            _crops[i].growTime = cropInitInt[(i * 3) + 1];
+            _crops[i].harvest = cropInitInt[(i * 3) + 2];
+        }
+        // SETUP STRING VALUES
+        for (uint256 i = 1; i <= 4; i += 1) {
+            _crops[i].name = cropInitString[i];
+        }
         _balances[msg.sender][WHEAT].totalBalance = 1000;
         _balances[msg.sender][CARROT].totalBalance = 1000;
         _balances[msg.sender][MELON].totalBalance = 1000;
@@ -52,6 +81,13 @@ contract CropFarm is ERC1155, ERC1155Supply {
         uint256 stakeDate;
     }
 
+    struct cropData {
+        uint256 id;
+        uint256 growTime;
+        uint256 harvest;
+        string name;
+    }
+
     mapping(address => mapping(uint256 => Balance)) internal _balances;
 
     //       ^ crop id          ^ user
@@ -59,6 +95,10 @@ contract CropFarm is ERC1155, ERC1155Supply {
     mapping(address => Land) internal _plots;
 
     //       ^ user
+
+    mapping(uint256 => cropData) internal _crops;
+
+    //      ^ crop id
 
     // change to INTERNAL for deployment
     mapping(address => uint256) public _plotNum;
@@ -123,8 +163,8 @@ contract CropFarm is ERC1155, ERC1155Supply {
         Crop storage plot = _plots[msg.sender].crops[_plot];
         plot.stakeDate = block.timestamp;
         plot.id = _id;
-        plot.name = "WHEAT";
-        plot.growTime = 20;
+        plot.name = _crops[_id].name;
+        plot.growTime = _crops[_id].growTime;
         plot.exists = true;
 
         _balances[msg.sender][_id].totalBalance -= 1;

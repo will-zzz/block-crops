@@ -3,10 +3,11 @@ import "./Farm.css";
 import { ethers } from "ethers";
 import Background from "./handlers/Background.js";
 import dayTime from "./images/day.png";
-import Crops from "./handlers/Crops.js";
+// import Crops from "./handlers/Crops.js";
 
 let bgImage = new Image();
 bgImage.src = dayTime;
+let crops = [];
 
 const Farm = () => {
   const canvasRef = useRef(null);
@@ -20,7 +21,7 @@ const Farm = () => {
       Background(bgImage, ctx, canvas);
 
       // Draw crops
-      Crops();
+      // Crops(0, 20, ctx);
 
       // Planting by user
       document.onkeydown = checkKey;
@@ -30,7 +31,7 @@ const Farm = () => {
         if (e.keyCode == "38") {
           // up arrow
           console.log("up");
-          plantCrop();
+          // plantCrop();
         }
       }
       requestAnimationFrame(render);
