@@ -1,3 +1,27 @@
+await farm.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 1, 0)
+await farm.harvest(1)
+await farm.plant(1, 1);
+await farm.harvest(1)
+await farm.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 1, 0)
+await farm.harvest(1)
+await farm.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 1, 0)
+await farm.plant(1, 1);
+await farm.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 1, 0)
+farm.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 1, 0)
+await farm.harvest(1)
+await farm.plant(1, 1);
+await farm.harvest(1)
+farm.harvest(1)
+await farm.plant(1, 1);
+farm.plant(0, 1);
+farm
+    farm = await Farm.deploy();
+Farm = await ethers.getContractFactory("CropFarm");
+token
+farm
+token
+  const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
 await farm.viewBalance('0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266', 3, 0);
 await farm.viewBalance('0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266', 2, 0);
 await farm.viewBalance('0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266', 1, 0);

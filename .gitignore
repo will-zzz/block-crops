@@ -13,5 +13,5 @@ node_modules
 # Ignore SASS config files
 .sass-cache
 
-hardhat.config.js
-cache
+/Backend/hardhat.config.js
+/Backend/cache
