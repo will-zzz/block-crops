@@ -1,3 +1,6 @@
 export default {
-  crop: {},
+  crop: {
+    x: 20,
+    y: 20,
+  },
 };

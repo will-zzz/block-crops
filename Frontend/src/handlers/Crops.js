@@ -1,10 +1,15 @@
-let image = new Image();
-image.src = "../images/sprout.png";
+export default function handleCrops(ctx, crop) {
+  let data = new Crop(crop.x);
+  data.draw(ctx);
+}
 
-let crops = [];
-
-export default (id, x, ctx) => {
-  // for (let i = 0; i < crops.length; i++) {
-  ctx.drawImage(image, x, 32, 32, 32);
-  // }
-};
+class Crop {
+  constructor(x) {
+    this.x = x;
+    this.y = 32;
+  }
+  draw(ctx) {
+    ctx.fillStyle = "green";
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+}

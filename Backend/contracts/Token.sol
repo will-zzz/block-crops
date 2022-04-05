@@ -20,6 +20,7 @@ contract CropFarm is ERC1155, ERC1155Supply {
         _mint(msg.sender, MELON, 1000, "");
         _mint(msg.sender, PUMPKIN, 1000, "");
 
+        // id, growtime, harvest
         uint8[15] memory cropInitInt = [
             0,
             0,
@@ -37,6 +38,7 @@ contract CropFarm is ERC1155, ERC1155Supply {
             10,
             1
         ];
+        // name
         string[5] memory cropInitString = [
             "",
             "Wheat",
