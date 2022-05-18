@@ -12,7 +12,7 @@ let bgImage = new Image();
 bgImage.src = dayTime;
 let crops = [];
 
-const tokenAddress = "0xeeb92d6b3999abdc8cc0226069d88c07f241fd4c";
+const tokenAddress = "0x5fa7E9cB352E62fdc46C3a69A3E5BdbB6DD50CdC";
 
 const Farm = () => {
   const [userAccount, setUserAccount] = useState("");
@@ -28,7 +28,7 @@ const Farm = () => {
       });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const contract = new ethers.Contract(tokenAddress, Token.abi, provider);
-      const balance = await contract.balanceOf(account, 1);
+      const balance = await contract.viewBalance(account, 1, 0);
       console.log("Balance: ", balance.toString());
     }
   }
@@ -39,7 +39,9 @@ const Farm = () => {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(tokenAddress, Token.abi, signer);
-      const transaction = await contract.plant(0, 1);
+      const transaction = await contract.plant(3, 2, {
+        gasLimit: 170000,
+      });
       await transaction.wait();
       console.log(`Crops successfully planted`);
     }
@@ -52,6 +54,10 @@ const Farm = () => {
         e.stopImmediatePropagation();
         // console.log("AYOOOOO");
         getBalance();
+      }
+      if (e.key == "p") {
+        e.stopImmediatePropagation();
+        plant();
       }
     }
   });

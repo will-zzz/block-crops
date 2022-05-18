@@ -1,3 +1,14 @@
+await token.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 2, 0)
+await token.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 2, totalBalance)
+await token.balanceOf("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 2);
+await token.balanceOf("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 2)
+await token.plant(0, 2);
+await token.plant('0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266', 2);
+await token.plant(0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266, 2);
+await token.plant(0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266, 1);
+token.plant(0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266, 1);
+  const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
 await farm.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 1, 0)
 await farm.harvest(1)
 await farm.plant(1, 1);
