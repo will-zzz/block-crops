@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.plot {
+  border: 2px solid black;
+  display: inline-block;
+  height: 100px;
+  width: 50px;
+}
+
+.farm {
+  background:green url(./assets/stock-vector-landscape-pixel-art-style-blue-sky-white-clouds-green-grass-on-ground-vector-illustration-game-1056926990.jpg) bottom center;
+  position: fixed;
+  width: 500px;
+  bottom: 0%;
+  right: 0%;
+  display: flex;
+}

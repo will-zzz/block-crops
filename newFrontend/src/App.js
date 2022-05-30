@@ -17,18 +17,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header"></header>
-      <main style={mainStyles}>
-        <Plot index="0" money={money} />
-        <Plot index="1" money={money} />
-        <Plot index="2" money={money} />
-        <Plot index="3" money={money} />
-        <Plot index="4" money={money} />
-        <Plot index="5" money={money} />
-
-        <button onClick={() => setSelectedCrop("Wheat")}>Wheat</button>
-        <button onClick={() => setSelectedCrop("Melon")}>Melon</button>
-        <button onClick={() => setSelectedCrop("Corn")}>Corn</button>
-        <button onClick={() => console.log(selectedCrop)}>CURRENT CROP</button>
+      <main>
+        <div className="farm">
+          <Plot cropName={selectedCrop} />
+          <Plot cropName={selectedCrop} />
+          <Plot cropName={selectedCrop} />
+          <Plot cropName={selectedCrop} />
+          <Plot cropName={selectedCrop} />
+          <Plot cropName={selectedCrop} />
+          <button onClick={() => setSelectedCrop("wheat")}>Wheat</button>
+          <button onClick={() => setSelectedCrop("melon")}>Melon</button>
+          <button onClick={() => setSelectedCrop("corn")}>Corn</button>
+          <button onClick={() => console.log(selectedCrop)}>
+            CURRENT CROP
+          </button>
+        </div>
       </main>
       <footer></footer>
     </div>
