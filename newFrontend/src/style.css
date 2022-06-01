@@ -15,15 +15,32 @@ code {
 .plot {
   border: 2px solid black;
   display: inline-block;
-  height: 100px;
+  height: 50px;
   width: 50px;
+  outline: 1px solid lightgreen;
 }
 
 .farm {
-  background:green url(./assets/stock-vector-landscape-pixel-art-style-blue-sky-white-clouds-green-grass-on-ground-vector-illustration-game-1056926990.jpg) bottom center;
+  background:green url(./assets/bg.jpg) bottom center;
   position: fixed;
   width: 500px;
+  height: 100px;
   bottom: 0%;
   right: 0%;
   display: flex;
+  outline: 3px solid lightblue;
+}
+
+.buttons {
+  width: 50px;
+  flex-direction: column;
+  position: absolute;
+  right: 0px;
+  padding: 5px;
+  outline: 1px solid red;
+}
+
+.buttons > button {
+  width: 100%;
+  font-size: 8px;
 }

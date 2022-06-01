@@ -8,9 +8,9 @@ export default function Plot(props) {
 
   function handleClick() {
     // if no crop in plot
-    if (plotState === null) {
+    if (plotState === null && props.cropName) {
       setCropName(props.cropName);
-      setImage(process.env.PUBLIC_URL + "/images/" + props.cropName + "_0.png");
+      setImage(process.env.PUBLIC_URL + "/images/" + props.cropName + "_5.png");
       setPlotState("growing");
       setTimeout(function () {
         setPlotState("grown");
@@ -26,7 +26,6 @@ export default function Plot(props) {
   return (
     <div>
       <img className="plot" src={image} onClick={handleClick} />
-      <p>{cropName}</p>
     </div>
   );
 }
