@@ -7,6 +7,7 @@ Block crops is the future of passive gaming and yield farming. Living in your br
 - run `npm install`
 - In `/Frontend` directory, run `npm run build` to export React app to chrome extension format in `build` folder.
 - In chrome browser, navigate to `chrome://extensions/`, turn on Developer Mode, and "Load Unpacked." Select build folder to import.
+- [Chrome Extension Docs](https://developer.chrome.com/docs/extensions/mv3/intro/)
 
 ## Running
 
