@@ -334,8 +334,8 @@
       ]
     },
     "/Users/wcomputer/codeProjects/crops/Backend/contracts/Token.sol": {
-      "lastModificationDate": 1649123005607,
-      "contentHash": "f6bf8c704340f34e5b25b1d8e7ff480d",
+      "lastModificationDate": 1656544602540,
+      "contentHash": "3fb9d8ed6045f0aaaa2f19bd337eebc7",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.1",

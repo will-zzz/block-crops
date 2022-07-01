@@ -9,67 +9,67 @@ import "hardhat/console.sol";
 
 contract CropFarm is ERC1155, ERC1155Supply {
     uint256 public constant NULL = 0;
-    uint256 public constant WHEAT = 1;
-    uint256 public constant CARROT = 2;
-    uint256 public constant MELON = 3;
-    uint256 public constant PUMPKIN = 4;
+    uint256 public constant TOMATO = 1;
+    uint256 public constant CORN = 2;
+    uint256 public constant WHEAT = 3;
+    uint256 public constant MELON = 4;
 
     constructor() ERC1155("https://game.example/api/item/{id}.json") {
+        _mint(msg.sender, TOMATO, 1000, "");
+        _mint(msg.sender, CORN, 1000, "");
         _mint(msg.sender, WHEAT, 1000, "");
-        _mint(msg.sender, CARROT, 1000, "");
         _mint(msg.sender, MELON, 1000, "");
-        _mint(msg.sender, PUMPKIN, 1000, "");
 
         // id, growtime, harvest
-        uint8[15] memory cropInitInt = [
+        uint16[15] memory cropInitInt = [
             0,
             0,
             0,
-            1,
-            10,
+            1, // tomato
+            100,
             3,
-            2,
-            10,
+            2, // corn
+            200,
             5,
-            3,
-            10,
-            1,
-            4,
-            10,
-            1
+            3, // wheat
+            100,
+            5,
+            4, // melon
+            500,
+            3
         ];
         // name
         string[5] memory cropInitString = [
             "",
+            "Tomato",
+            "Corn",
             "Wheat",
-            "Carrot",
-            "Melon",
-            "Pumpkin"
+            "Melon"
         ];
         //SETUP INT VALUES
         // for # of crops
         for (uint256 i = 1; i <= 4; i += 1) {
-            _crops[i].id = cropInitInt[i * 3];
-            _crops[i].growTime = cropInitInt[(i * 3) + 1];
-            _crops[i].harvest = cropInitInt[(i * 3) + 2];
+            crops[i].id = cropInitInt[i * 3];
+            crops[i].growTime = cropInitInt[(i * 3) + 1];
+            crops[i].harvest = cropInitInt[(i * 3) + 2];
         }
         // SETUP STRING VALUES
         for (uint256 i = 1; i <= 4; i += 1) {
-            _crops[i].name = cropInitString[i];
+            crops[i].name = cropInitString[i];
         }
-        _balances[msg.sender][WHEAT].totalBalance = 1000;
-        _balances[msg.sender][CARROT].totalBalance = 1000;
-        _balances[msg.sender][MELON].totalBalance = 1000;
-        _balances[msg.sender][PUMPKIN].totalBalance = 1000;
+        balances[msg.sender][TOMATO].availableBalance = 1000;
+        balances[msg.sender][CORN].availableBalance = 1000;
+        balances[msg.sender][WHEAT].availableBalance = 1000;
+        balances[msg.sender][MELON].availableBalance = 1000;
     }
 
     // user's available VS planted balance (for each crop)
     struct Balance {
-        uint256 totalBalance;
+        uint256 availableBalance;
         uint256 stakedBalance;
     }
 
-    // array of # of plots each user has
+    // array of # of _plots each user has
     struct Land {
         Crop[10] crops;
     }
@@ -90,20 +90,19 @@ contract CropFarm is ERC1155, ERC1155Supply {
         string name;
     }
 
-    mapping(address => mapping(uint256 => Balance)) internal _balances;
+    mapping(address => mapping(uint256 => Balance)) public balances;
 
-    //       ^ crop id          ^ user
+    //       ^ user          ^ crop id
 
-    mapping(address => Land) internal _plots;
+    mapping(address => Land) private _plots;
 
     //       ^ user
 
-    mapping(uint256 => cropData) internal _crops;
+    mapping(uint256 => cropData) public crops;
 
     //      ^ crop id
 
-    // change to INTERNAL for deployment
-    mapping(address => uint256) public _plotNum;
+    mapping(address => uint256) public plotnum;
 
     function _safeTransferFrom(
         address from,
@@ -113,15 +112,15 @@ contract CropFarm is ERC1155, ERC1155Supply {
         bytes memory data
     ) internal virtual override {
         require(to != address(0), "ERC1155: transfer to the zero address");
-        uint256 fromBalance = _balances[from][id].totalBalance;
+        uint256 fromBalance = balances[from][id].availableBalance;
         require(
             fromBalance >= amount,
             "ERC1155: insufficient balance for transfer"
         );
         fromBalance = fromBalance - amount;
         // update
-        _balances[to][id].totalBalance += amount;
-        _balances[from][id].totalBalance = fromBalance;
+        balances[to][id].availableBalance += amount;
+        balances[from][id].availableBalance = fromBalance;
         // then calls inherited safeTransferFrom
         super._safeTransferFrom(from, to, id, amount, data);
     }
@@ -132,9 +131,9 @@ contract CropFarm is ERC1155, ERC1155Supply {
         uint256 _member
     ) public view returns (uint256) {
         if (_member == 0) {
-            return _balances[_account][_id].totalBalance;
+            return balances[_account][_id].availableBalance;
         } else if (_member == 1) {
-            return _balances[_account][_id].stakedBalance;
+            return balances[_account][_id].stakedBalance;
         } else {
             return 0;
         }
@@ -143,21 +142,24 @@ contract CropFarm is ERC1155, ERC1155Supply {
     function viewPlot(address _account, uint256 _id)
         public
         view
-        returns (uint256)
+        returns (uint256, string memory)
     {
-        return _plots[_account].crops[_id].id;
+        return (
+            _plots[_account].crops[_id].id,
+            _plots[_account].crops[_id].name
+        );
     }
 
     function plant(uint256 _plot, uint256 _id) public {
         require(
-            _balances[msg.sender][_id].totalBalance >= 1,
+            balances[msg.sender][_id].availableBalance >= 1,
             "Not enough crops to plant!"
         );
         // first time user plants, set starting plot num
-        if (_plotNum[msg.sender] == 0) {
-            _plotNum[msg.sender] = 3;
+        if (plotnum[msg.sender] == 0) {
+            plotnum[msg.sender] = 3;
         }
-        require(_plot < _plotNum[msg.sender], "You don't own enough land!");
+        require(_plot < plotnum[msg.sender], "You don't own enough land!");
         require(
             _plots[msg.sender].crops[_plot].exists != true,
             "This plot is not empty!"
@@ -165,12 +167,12 @@ contract CropFarm is ERC1155, ERC1155Supply {
         Crop storage plot = _plots[msg.sender].crops[_plot];
         plot.stakeDate = block.timestamp;
         plot.id = _id;
-        plot.name = _crops[_id].name;
-        plot.growTime = _crops[_id].growTime;
+        plot.name = crops[_id].name;
+        plot.growTime = crops[_id].growTime;
         plot.exists = true;
 
-        _balances[msg.sender][_id].totalBalance -= 1;
-        _balances[msg.sender][_id].stakedBalance += 1;
+        balances[msg.sender][_id].availableBalance -= 1;
+        balances[msg.sender][_id].stakedBalance += 1;
     }
 
     function harvest(uint256 _plot) public {
@@ -181,24 +183,35 @@ contract CropFarm is ERC1155, ERC1155Supply {
             "Crop not done growing."
         );
         uint256 cropId = plot.id;
-        _balances[msg.sender][cropId].totalBalance += 2;
-        _balances[msg.sender][cropId].stakedBalance -= 1;
+        balances[msg.sender][cropId].availableBalance += crops[cropId].harvest;
+        balances[msg.sender][cropId].stakedBalance -= 1;
         delete _plots[msg.sender].crops[_plot];
     }
 
     function buyPlot() public {
         require(
-            _plotNum[msg.sender] >= 3,
-            "User must plant crops once before purchasing plots!"
+            plotnum[msg.sender] >= 3,
+            "User must plant crops once before purchasing _plots!"
         );
-        _safeTransferFrom(msg.sender, address(this), WHEAT, 10, "");
+        _safeTransferFrom(msg.sender, address(this), TOMATO, 10, "");
         _newPlot(msg.sender);
     }
 
     // change to internal for deployment
     function _newPlot(address _account) internal {
-        require(_plotNum[_account] <= 10, "Can't increase number of plots.");
-        _plotNum[_account] += 1;
+        require(plotnum[_account] <= 10, "Can't increase number of _plots.");
+        plotnum[_account] += 1;
+    }
+
+    function viewGrowStatus(address _account, uint256 _plot)
+        public
+        view
+        returns (uint256, uint256)
+    {
+        return (
+            block.timestamp - _plots[_account].crops[_plot].stakeDate,
+            _plots[_account].crops[_plot].growTime
+        );
     }
 
     // The following functions are overrides required by Solidity. BASICALLY need this bc of ERC1155Supply

@@ -1,3 +1,110 @@
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0);
+await token.buyPlot();
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0);
+await token.buyPlot;
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0);
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1);
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0);
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 2);
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0);
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 2);
+await token.plant(2, 2);
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1);
+await token.plant(1, 3);
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0);
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1);
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0);
+await token.plant(0, 1);
+  const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
+await token.viewGrowStatus("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0);
+await token.plant(0, 1);
+await token.plant(0, 1):
+await token.plant("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0, 1);
+  const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 1);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 2, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+  const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
+token
+CropFarm
+CropFar
+await contract.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await contract.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+contract.s
+  const contract = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.plant(0, 1);
+await contract.plant(0, 1);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.plant(2, 1);
+await token.plant(3, 1);
+await token.plant(4, 1);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1);
+await token.address
+token
+  const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
+await token.address
+const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
+token.address
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+check
+const check = await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+const check = await contract.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+    );
+      0
+      1,
+      "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+const check = await contract.viewBalance(
+    );
+      0
+      1,
+      "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+const check = await contract.viewBalance(
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0, 0);
+token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0, 0;
+token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0, 0;
+token.address
+token
+const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
+token.address
+  const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.plant(0, 1);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.address
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 1, 0);
+await token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0, 0);
+token.viewBalance("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", 0, 0);
+token.viewBalance(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, 0, 0);
+token.address
+token
+  const token = await Token.deploy();
+const Token = await ethers.getContractFactory("CropFarm");
+await token.plant(0, 0)
+d
+token.plant(0, 0, 0)
+token
+const token = await Token.deploy();
+Token
+  const Token = await ethers.getContractFactory("CropFarm");
+const Token = await ethers.getContractFactory("Token")
 await token.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 2, 0)
 await token.viewBalance("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 2, totalBalance)
 await token.balanceOf("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266", 2);

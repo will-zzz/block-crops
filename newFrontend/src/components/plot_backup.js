@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 import Token from "../artifacts/CropFarm.json";
 
-const tokenAddress = "0x5fa7E9cB352E62fdc46C3a69A3E5BdbB6DD50CdC";
+const tokenAddress = "0xeeb92d6b3999abdc8cc0226069d88c07f241fd4c";
 
 const plotStyles = {
   background: "rgba( 51, 51, 51, 0.5 )",
