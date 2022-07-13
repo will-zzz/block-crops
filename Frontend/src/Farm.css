@@ -1,9 +1,0 @@
-#farmCanvas {
-  border: 1px solid black;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 384px;
-  height: 64px;
-  z-index: 990;
-}

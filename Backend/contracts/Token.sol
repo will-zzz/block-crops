@@ -36,7 +36,7 @@ contract CropFarm is ERC1155, ERC1155Supply {
             5,
             4, // melon
             500,
-            3
+            2
         ];
         // name
         string[5] memory cropInitString = [
@@ -183,6 +183,7 @@ contract CropFarm is ERC1155, ERC1155Supply {
             "Crop not done growing."
         );
         uint256 cropId = plot.id;
+        // MINT HERE
         balances[msg.sender][cropId].availableBalance += crops[cropId].harvest;
         balances[msg.sender][cropId].stakedBalance -= 1;
         delete _plots[msg.sender].crops[_plot];
@@ -236,4 +237,6 @@ contract CropFarm is ERC1155, ERC1155Supply {
     ) public virtual returns (bytes4) {
         return this.onERC1155Received.selector;
     }
+
+    fallback() external payable {}
 }

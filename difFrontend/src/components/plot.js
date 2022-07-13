@@ -1,4 +1,4 @@
-import React, { useState, useEffect, componentDidMount } from "react";
+import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import Token from "../artifacts/CropFarm.json";
 
@@ -14,29 +14,25 @@ export default function Plot(props) {
   const [cropName, setCropName] = useState("empty");
 
   async function plant() {
-    // await requestAccount();
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(tokenAddress, Token.abi, signer);
+    const contract = new ethers.Contract(tokenAddress, Token.abi, props.signer);
     const transaction = await contract.plant(props.plotNum, props.cropInt);
     await transaction.wait();
     console.log(transaction);
   }
 
   async function harvest() {
-    // await requestAccount();
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(tokenAddress, Token.abi, signer);
+    const contract = new ethers.Contract(tokenAddress, Token.abi, props.signer);
     const transaction = await contract.harvest(props.plotNum);
     await transaction.wait();
     console.log(transaction);
   }
 
   async function viewGrowStatus() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // const signer = provider.getSigner();
-    const contract = new ethers.Contract(tokenAddress, Token.abi, provider);
+    const contract = new ethers.Contract(
+      tokenAddress,
+      Token.abi,
+      props.provider
+    );
     const growStatus = await contract.viewGrowStatus(
       props.userAccount,
       props.plotNum
@@ -75,8 +71,11 @@ export default function Plot(props) {
   }
 
   async function fetchCrops() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const contract = new ethers.Contract(tokenAddress, Token.abi, provider);
+    const contract = new ethers.Contract(
+      tokenAddress,
+      Token.abi,
+      props.provider
+    );
     const plotDetails = await contract.viewPlot(
       props.userAccount,
       props.plotNum
@@ -100,12 +99,12 @@ export default function Plot(props) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      fetchCrops();
-      viewGrowStatus();
+      // fetchCrops();
+      // viewGrowStatus();
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [props.userAccount, cropInt, cropName]);
+  }, [props.userAccount, cropInt, cropName, props.provider, props.signer]);
 
-  return <img src={image} onClick={handleClick} className="block" />;
+  return <img src={image} onClick={handleClick} className="plot" />;
 }
