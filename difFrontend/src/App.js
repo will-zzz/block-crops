@@ -11,7 +11,7 @@ function App() {
   const [cropInt, setCropInt] = useState(null);
   const [userAccount, setUserAccount] = useState("");
 
-  async function requestAccount() {
+  async function updateEthers() {
     // A Web3Provider wraps a standard Web3 provider, which is
     // what MetaMask injects as window.ethereum into each page
     const tempProvider = new ethers.providers.Web3Provider(window.ethereum);
@@ -26,14 +26,35 @@ function App() {
 
     setProvider(tempProvider);
     setSigner(tempSigner);
-    setUserAccount(await tempSigner.getAddress());
   }
 
-  useEffect(() => {
-    requestAccount();
-    console.log(provider);
-    console.log(signer);
-  }, [provider, signer]);
+  async function connectWallet() {
+    console.log("Requesting account...");
+
+    // ❌ Check if Meta Mask Extension exists
+    if (window.ethereum) {
+      console.log("detected");
+
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setUserAccount(accounts[0]);
+      } catch (error) {
+        console.log("Error connecting...");
+      }
+    } else {
+      alert("Meta Mask not detected");
+    }
+
+    updateEthers();
+  }
+
+  // useEffect(() => {
+  //   requestAccount();
+  //   // console.log(provider);
+  //   // console.log(signer);
+  // }, [window.ethereum]);
 
   return (
     <div className="App">
@@ -79,6 +100,7 @@ function App() {
           <div className="buttons">
             <button onClick={() => setCropInt(1)}>Tomato</button>
             <button onClick={() => setCropInt(2)}>Corn</button>
+            <button onClick={() => connectWallet()}>Connect Wallet</button>
           </div>
           <p className="account">{userAccount}</p>
         </div>

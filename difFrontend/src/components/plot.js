@@ -99,8 +99,10 @@ export default function Plot(props) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // fetchCrops();
-      // viewGrowStatus();
+      if (props.userAccount) {
+        fetchCrops();
+        viewGrowStatus();
+      }
     }, 1000);
 
     return () => clearInterval(interval);
