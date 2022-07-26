@@ -9,11 +9,11 @@ require("@nomiclabs/hardhat-waffle");
 module.exports = {
   solidity: "0.8.1",
   networks: {
-    hardhat: {
+    hardhat: {``
       chainID: 1337,
       mining: {
         auto: false,
-        interval: 5000,
+        interval: 5000,``
       },
     },
     ropsten: {
