@@ -9,12 +9,12 @@ require("@nomiclabs/hardhat-waffle");
 module.exports = {
   solidity: "0.8.1",
   networks: {
-    hardhat: {``
+    hardhat: {
       chainID: 1337,
-      mining: {
-        auto: false,
-        interval: 5000,``
-      },
+      // mining: {
+      //   auto: false,
+      //   interval: 5000,
+      // },
     },
     ropsten: {
       url: "https://ropsten.infura.io/v3/76c5b111cb5e4a2b8a5da65fd8671cb3",
