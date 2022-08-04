@@ -27,7 +27,7 @@ contract CropFarm is ERC1155, ERC1155Supply {
             0,
             1, // tomato
             100,
-            3,
+            2,
             2, // corn
             200,
             5,
@@ -164,15 +164,15 @@ contract CropFarm is ERC1155, ERC1155Supply {
             _plots[msg.sender].crops[_plot].exists != true,
             "This plot is not empty!"
         );
+        balances[msg.sender][_id].availableBalance -= 1;
+        balances[msg.sender][_id].stakedBalance += 1;
+
         Crop storage plot = _plots[msg.sender].crops[_plot];
         plot.stakeDate = block.timestamp;
         plot.id = _id;
         plot.name = crops[_id].name;
         plot.growTime = crops[_id].growTime;
         plot.exists = true;
-
-        balances[msg.sender][_id].availableBalance -= 1;
-        balances[msg.sender][_id].stakedBalance += 1;
     }
 
     function harvest(uint256 _plot) public {
@@ -184,18 +184,19 @@ contract CropFarm is ERC1155, ERC1155Supply {
         );
         uint256 cropId = plot.id;
         // MINT HERE
-        balances[msg.sender][cropId].availableBalance += crops[cropId].harvest;
-        balances[msg.sender][cropId].stakedBalance -= 1;
+        _mint(msg.sender, cropId, crops[cropId].harvest, "");
         delete _plots[msg.sender].crops[_plot];
+        balances[msg.sender][cropId].stakedBalance -= 1;
+        balances[msg.sender][cropId].availableBalance += crops[cropId].harvest;
     }
 
-    function buyPlot() public {
+    function buyPlot() public payable {
         require(
             plotnum[msg.sender] >= 3,
             "User must plant crops once before purchasing _plots!"
         );
-        _safeTransferFrom(msg.sender, address(this), TOMATO, 10, "");
         _newPlot(msg.sender);
+        _safeTransferFrom(msg.sender, address(this), TOMATO, 10, "");
     }
 
     // change to internal for deployment
@@ -239,4 +240,10 @@ contract CropFarm is ERC1155, ERC1155Supply {
     }
 
     fallback() external payable {}
+
+    event Received(address, uint256);
+
+    receive() external payable {
+        emit Received(msg.sender, msg.value);
+    }
 }

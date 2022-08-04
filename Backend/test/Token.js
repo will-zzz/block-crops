@@ -1,4 +1,6 @@
 const { expect } = require("chai");
+const { ethers } = require("hardhat");
+const BigNumber = require("bignumber.js");
 
 describe("Token contract", function () {
   let Farm;
@@ -18,7 +20,6 @@ describe("Token contract", function () {
       for (let i = 1; i <= 4; i++) {
         let ownerBalance = await farm.balanceOf(owner.address, i);
         expect(await farm.totalSupply(i)).to.equal(ownerBalance);
-        // console.log("There are " + ownerBalance.toString() + " tokens with ID " + i);
       }
     });
   });
@@ -28,42 +29,24 @@ describe("Token contract", function () {
         .connect(owner)
         .safeTransferFrom(owner.address, addr1.address, 1, 50, 0x00);
       expect(await farm.balanceOf(addr1.address, 1)).to.equal(50);
-      // // TOKEN / MAPPING VALUES AFTER TRANSFER
-      // console.log(
-      //   "Owner has " +
-      //     (await farm.balanceOf(owner.address, 0)) +
-      //     " tokens of ID 0 on blockchain."
-      // );
-      // console.log(
-      //   (
-      //     "Owner has " + (await farm.viewValues(owner.address, 0, 0))
-      //   ).toString() + " tokens of ID 0 in mapping."
-      // );
-      // console.log(
-      //   "addr1 has " +
-      //     (await farm.balanceOf(addr1.address, 0)) +
-      //     " tokens of ID 0 on blockchain."
-      // );
-      // console.log(
-      //   (
-      //     "addr1 has " + (await farm.viewValues(addr1.address, 0, 0))
-      //   ).toString() + " tokens of ID 0 in mapping."
-      // );
     });
     it("Plants / harvests crops", async function () {
       await farm.plant(0, 1);
-      expect(await farm.viewPlot(owner.address, 0)).to.equal(1);
-      await network.provider.send("evm_increaseTime", [25]);
+      let bruh = await farm.viewPlot(owner.address, 0);
+      expect(bruh[0]).to.equal(1);
+      await network.provider.send("evm_increaseTime", [100]);
       await farm.harvest(0);
-      expect(await farm.viewPlot(owner.address, 0)).to.equal(0);
+      bruh = await farm.viewPlot(owner.address, 0);
+      expect(bruh[0]).to.equal(0);
       expect(await farm.viewBalance(owner.address, 1, 0)).to.equal(1001);
+      expect(await farm.balanceOf(owner.address, 1)).to.equal(1001);
     });
   });
   describe("Account info", function () {
     it("Buys new plots", async function () {
       await farm.plant(0, 1);
       await farm.buyPlot();
-      expect(await farm._plotNum(owner.address)).to.equal(4);
+      expect(await farm.plotnum(owner.address)).to.equal(4);
       expect(await farm.balanceOf(farm.address, 1)).to.equal(10);
     });
   });
