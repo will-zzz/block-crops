@@ -8,7 +8,7 @@ const tokenAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 export default function Plot(props) {
   const [image, setImage] = useState(
-    "https://blockcrops.s3.amazonaws.com/images/empty.png"
+    "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/empty.png"
   );
   const [cropInt, setCropInt] = useState(0);
   const [cropName, setCropName] = useState("empty");
@@ -40,33 +40,40 @@ export default function Plot(props) {
     // console.log(Number(growStatus[0]), Number(growStatus[1]));
     if (cropInt) {
       let percentage = Number(growStatus[0]) / Number(growStatus[1]);
-      if (0 < percentage <= 0.2) {
+      if (0 < percentage <= 0.25) {
         setImage(
-          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "_0.png"
+          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
+            "seeds.png"
         );
-      } else if (0.2 < percentage <= 0.4) {
+      } else if (0.25 < percentage <= 0.5) {
         setImage(
-          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "_1.png"
+          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
+            cropName +
+            "1.png"
         );
-      } else if (0.4 < percentage <= 0.6) {
+      } else if (0.5 < percentage <= 0.75) {
         setImage(
-          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "_2.png"
+          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
+            cropName +
+            "2.png"
         );
-      } else if (0.6 < percentage <= 0.8) {
+      } else if (0.75 < percentage < 0.1) {
         setImage(
-          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "_3.png"
-        );
-      } else if (0.8 < percentage < 1) {
-        setImage(
-          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "_4.png"
+          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
+            cropName +
+            "3.png"
         );
       } else if (percentage >= 1) {
         setImage(
-          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "_5.png"
+          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
+            cropName +
+            "4.png"
         );
       }
     } else {
-      setImage("https://blockcrops.s3.amazonaws.com/images/empty.png");
+      setImage(
+        "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/empty.png"
+      );
     }
   }
 
