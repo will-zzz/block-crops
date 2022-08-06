@@ -112,7 +112,7 @@ function App() {
           </div>
         </main>
         {isWalletConnected ? (
-          <Menu />
+          <Menu setCropInt={setCropInt} />
         ) : (
           <Button
             variant="contained"

@@ -8,7 +8,7 @@ const tokenAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 export default function Plot(props) {
   const [image, setImage] = useState(
-    "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/empty.png"
+    "https://blockcrops.s3.amazonaws.com/images/empty.png"
   );
   const [cropInt, setCropInt] = useState(0);
   const [cropName, setCropName] = useState("empty");
@@ -41,39 +41,26 @@ export default function Plot(props) {
     if (cropInt) {
       let percentage = Number(growStatus[0]) / Number(growStatus[1]);
       if (0 < percentage <= 0.25) {
-        setImage(
-          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
-            "seeds.png"
-        );
+        setImage("https://blockcrops.s3.amazonaws.com/images/" + "seeds.png");
       } else if (0.25 < percentage <= 0.5) {
         setImage(
-          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
-            cropName +
-            "1.png"
+          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "1.png"
         );
       } else if (0.5 < percentage <= 0.75) {
         setImage(
-          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
-            cropName +
-            "2.png"
+          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "2.png"
         );
       } else if (0.75 < percentage < 0.1) {
         setImage(
-          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
-            cropName +
-            "3.png"
+          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "3.png"
         );
       } else if (percentage >= 1) {
         setImage(
-          "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/" +
-            cropName +
-            "4.png"
+          "https://blockcrops.s3.amazonaws.com/images/" + cropName + "4.png"
         );
       }
     } else {
-      setImage(
-        "https://blockcrops.s3.amazonaws.com/newImages/Farming+Crops/empty.png"
-      );
+      setImage("https://blockcrops.s3.amazonaws.com/images/empty.png");
     }
   }
 
@@ -110,6 +97,7 @@ export default function Plot(props) {
         fetchCrops();
         viewGrowStatus();
       }
+      console.log(props.cropInt);
     }, 1000);
 
     return () => clearInterval(interval);

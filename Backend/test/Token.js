@@ -31,15 +31,20 @@ describe("Token contract", function () {
       expect(await farm.balanceOf(addr1.address, 1)).to.equal(50);
     });
     it("Plants / harvests crops", async function () {
-      await farm.plant(0, 1);
+      await farm.plant(0, 2);
       let bruh = await farm.viewPlot(owner.address, 0);
-      expect(bruh[0]).to.equal(1);
-      await network.provider.send("evm_increaseTime", [100]);
+      expect(bruh[0]).to.equal(2);
+      await network.provider.send("evm_increaseTime", [200]);
       await farm.harvest(0);
       bruh = await farm.viewPlot(owner.address, 0);
       expect(bruh[0]).to.equal(0);
-      expect(await farm.viewBalance(owner.address, 1, 0)).to.equal(1001);
-      expect(await farm.balanceOf(owner.address, 1)).to.equal(1001);
+      expect(await farm.viewBalance(owner.address, 2, 0)).to.equal(1004);
+      expect(await farm.balanceOf(owner.address, 2)).to.equal(1004);
+      console.log("Real Balance: ", await farm.balanceOf(owner.address, 2));
+      console.log(
+        "Storage Balance: ",
+        await farm.viewBalance(owner.address, 2, 0)
+      );
     });
   });
   describe("Account info", function () {

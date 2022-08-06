@@ -3,15 +3,14 @@ import { MenuExpanded } from "./styled";
 import { Card, CardContent, Grid, Fade, Typography } from "@mui/material";
 import Button from "../Button/button";
 
-export default function Menu() {
+export default function Menu(props) {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const plants = [
-    { name: "wheat", owned: 23 },
-    { name: "tomato", owned: 5 },
-    { name: "blueberry", owned: 8 },
-    { name: "pumpkin", owned: 11 },
-    { name: "corn", owned: 15 },
+    { name: "wheat", owned: 23, id: 1 },
+    { name: "corn", owned: 5, id: 2 },
+    { name: "potato", owned: 8, id: 3 },
+    { name: "strawberry", owned: 11, id: 4 },
   ];
 
   return (
@@ -21,7 +20,7 @@ export default function Menu() {
           <Grid container>
             {plants.map((plant) => (
               <Grid item lg={3} key={plant.name}>
-                <Card>
+                <Card onClick={props.setCropInt(plant.id)}>
                   <CardContent>{plant.name}</CardContent>
                 </Card>
                 <Typography

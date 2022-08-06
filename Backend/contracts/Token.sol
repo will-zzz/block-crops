@@ -9,58 +9,116 @@ import "hardhat/console.sol";
 
 contract CropFarm is ERC1155, ERC1155Supply {
     uint256 public constant NULL = 0;
-    uint256 public constant TOMATO = 1;
+    uint256 public constant WHEAT = 1;
     uint256 public constant CORN = 2;
-    uint256 public constant WHEAT = 3;
-    uint256 public constant MELON = 4;
+    uint256 public constant POTATO = 3;
+    uint256 public constant STRAWBERRY = 4;
+    uint256 public constant BLUEBERRY = 1;
+    uint256 public constant WATERMELON = 2;
+    uint256 public constant PUMPKIN = 3;
+    uint256 public constant LETTUCE = 4;
+    uint256 public constant TOMATO = 1;
+    uint256 public constant CAULIFLOWER = 2;
+    uint256 public constant EGGPLANT = 3;
+    uint256 public constant CHILIPEPPER = 4;
 
-    constructor() ERC1155("https://game.example/api/item/{id}.json") {
-        _mint(msg.sender, TOMATO, 1000, "");
-        _mint(msg.sender, CORN, 1000, "");
+    constructor()
+        ERC1155("https://blockcrops.s3.amazonaws.com/tokens/{id}.png")
+    {
         _mint(msg.sender, WHEAT, 1000, "");
-        _mint(msg.sender, MELON, 1000, "");
+        _mint(msg.sender, CORN, 1000, "");
+        _mint(msg.sender, POTATO, 1000, "");
+        _mint(msg.sender, STRAWBERRY, 1000, "");
+        _mint(msg.sender, BLUEBERRY, 1000, "");
+        _mint(msg.sender, WATERMELON, 1000, "");
+        _mint(msg.sender, PUMPKIN, 1000, "");
+        _mint(msg.sender, LETTUCE, 1000, "");
+        _mint(msg.sender, TOMATO, 1000, "");
+        _mint(msg.sender, CAULIFLOWER, 1000, "");
+        _mint(msg.sender, EGGPLANT, 1000, "");
+        _mint(msg.sender, CHILIPEPPER, 1000, "");
 
         // id, growtime, harvest
-        uint16[15] memory cropInitInt = [
+        uint256[39] memory cropInitInt = [
+            NULL,
             0,
             0,
-            0,
-            1, // tomato
+            WHEAT,
+            100,
+            3,
+            CORN,
+            200,
+            3,
+            POTATO,
+            100,
+            4,
+            STRAWBERRY,
+            500,
+            6,
+            BLUEBERRY,
+            100,
+            6,
+            WATERMELON,
+            200,
+            2,
+            PUMPKIN,
             100,
             2,
-            2, // corn
-            200,
-            5,
-            3, // wheat
+            LETTUCE,
+            500,
+            3,
+            TOMATO,
             100,
             5,
-            4, // melon
+            CAULIFLOWER,
+            200,
+            2,
+            EGGPLANT,
+            100,
+            4,
+            CHILIPEPPER,
             500,
-            2
+            6
         ];
         // name
-        string[5] memory cropInitString = [
+        string[13] memory cropInitString = [
             "",
-            "Tomato",
-            "Corn",
             "Wheat",
-            "Melon"
+            "Corn",
+            "Potato",
+            "Strawberry",
+            "Blueberry",
+            "Watermelon",
+            "Pumpkin",
+            "Lettuce",
+            "Tomato",
+            "Cauliflower",
+            "Eggplant",
+            "Chili Pepper"
         ];
         //SETUP INT VALUES
         // for # of crops
-        for (uint256 i = 1; i <= 4; i += 1) {
+        for (uint256 i = 1; i <= 12; i += 1) {
             crops[i].id = cropInitInt[i * 3];
             crops[i].growTime = cropInitInt[(i * 3) + 1];
             crops[i].harvest = cropInitInt[(i * 3) + 2];
         }
         // SETUP STRING VALUES
-        for (uint256 i = 1; i <= 4; i += 1) {
+        for (uint256 i = 1; i <= 12; i += 1) {
             crops[i].name = cropInitString[i];
         }
-        balances[msg.sender][TOMATO].availableBalance = 1000;
-        balances[msg.sender][CORN].availableBalance = 1000;
         balances[msg.sender][WHEAT].availableBalance = 1000;
-        balances[msg.sender][MELON].availableBalance = 1000;
+        balances[msg.sender][CORN].availableBalance = 1000;
+        balances[msg.sender][POTATO].availableBalance = 1000;
+        balances[msg.sender][STRAWBERRY].availableBalance = 1000;
+        balances[msg.sender][BLUEBERRY].availableBalance = 1000;
+        balances[msg.sender][WATERMELON].availableBalance = 1000;
+        balances[msg.sender][PUMPKIN].availableBalance = 1000;
+        balances[msg.sender][LETTUCE].availableBalance = 1000;
+        balances[msg.sender][TOMATO].availableBalance = 1000;
+        balances[msg.sender][CAULIFLOWER].availableBalance = 1000;
+        balances[msg.sender][EGGPLANT].availableBalance = 1000;
+        balances[msg.sender][CHILIPEPPER].availableBalance = 1000;
     }
 
     // user's available VS planted balance (for each crop)
@@ -184,7 +242,7 @@ contract CropFarm is ERC1155, ERC1155Supply {
         );
         uint256 cropId = plot.id;
         // MINT HERE
-        _mint(msg.sender, cropId, crops[cropId].harvest, "");
+        _mint(msg.sender, cropId, crops[cropId].harvest - 1, "");
         delete _plots[msg.sender].crops[_plot];
         balances[msg.sender][cropId].stakedBalance -= 1;
         balances[msg.sender][cropId].availableBalance += crops[cropId].harvest;
