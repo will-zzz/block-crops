@@ -13,14 +13,14 @@ contract CropFarm is ERC1155, ERC1155Supply {
     uint256 public constant CORN = 2;
     uint256 public constant POTATO = 3;
     uint256 public constant STRAWBERRY = 4;
-    uint256 public constant BLUEBERRY = 1;
-    uint256 public constant WATERMELON = 2;
-    uint256 public constant PUMPKIN = 3;
-    uint256 public constant LETTUCE = 4;
-    uint256 public constant TOMATO = 1;
-    uint256 public constant CAULIFLOWER = 2;
-    uint256 public constant EGGPLANT = 3;
-    uint256 public constant CHILIPEPPER = 4;
+    uint256 public constant BLUEBERRY = 5;
+    uint256 public constant WATERMELON = 6;
+    uint256 public constant PUMPKIN = 7;
+    uint256 public constant LETTUCE = 8;
+    uint256 public constant TOMATO = 9;
+    uint256 public constant CAULIFLOWER = 10;
+    uint256 public constant EGGPLANT = 11;
+    uint256 public constant CHILIPEPPER = 12;
 
     constructor()
         ERC1155("https://blockcrops.s3.amazonaws.com/tokens/{id}.png")

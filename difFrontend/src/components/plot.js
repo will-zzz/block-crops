@@ -2,7 +2,21 @@ import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import Token from "../artifacts/CropFarm.json";
 
-const cropIdToName = ["nothing", "tomato", "corn"];
+const cropIdToName = [
+  "nothing",
+  "wheat",
+  "corn",
+  "potato",
+  "strawberry",
+  "blueberry",
+  "watermelon",
+  "pumpkin",
+  "lettuce",
+  "tomato",
+  "cauliflower",
+  "egglplant",
+  "chilipepper",
+];
 
 const tokenAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
@@ -97,7 +111,6 @@ export default function Plot(props) {
         fetchCrops();
         viewGrowStatus();
       }
-      console.log(props.cropInt);
     }, 1000);
 
     return () => clearInterval(interval);

@@ -7,6 +7,7 @@ import { defaultTheme } from "./layout/theme";
 import Button from "./components/Button/button";
 // if you delete this svg, be careful ab postbuild script
 import logo from "./logo.svg";
+import "./index.css";
 
 function App() {
   const [provider, setProvider] = useState({});
@@ -102,17 +103,15 @@ function App() {
               provider={provider}
               signer={signer}
             />
-            <span className="crops--tomato1"></span>
-            <div className="buttons">
-              <button onClick={() => setCropInt(1)}>Tomato</button>
-              <button onClick={() => setCropInt(2)}>Corn</button>
-              <button onClick={() => connectWallet()}>Connect Wallet</button>
-            </div>
             <p className="account">{userAccount}</p>
           </div>
         </main>
         {isWalletConnected ? (
-          <Menu setCropInt={setCropInt} />
+          <Menu
+            setCropInt={setCropInt}
+            userAccount={userAccount}
+            provider={provider}
+          />
         ) : (
           <Button
             variant="contained"
