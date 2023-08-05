@@ -34,12 +34,8 @@ function App() {
   }
 
   async function connectWallet() {
-    console.log("Requesting account...");
-
     // ❌ Check if Meta Mask Extension exists
     if (window.ethereum) {
-      console.log("detected");
-
       try {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
@@ -55,19 +51,13 @@ function App() {
 
     updateEthers();
   }
-
-  // useEffect(() => {
-  //   requestAccount();
-  //   // console.log(provider);
-  //   // console.log(signer);
-  // }, [window.ethereum]);
-
   return (
-    <div className="App">
+    <div className="fixed bottom-0 right-0 z-[9999]">
       <ThemeProvider theme={defaultTheme}>
         <header className="App-header"></header>
         <main>
-          <div className="farm">
+          {/* <div className="farm"> */}
+          <div className="flex flex-row pl-[24px] absolute right-0 bottom-0 w-[312px] h-[96px] bg-cover bg-[url('https://blockcrops.s3.amazonaws.com/images/bg.png')]">
             <Plot
               cropInt={cropInt}
               plotNum={0}
@@ -103,7 +93,13 @@ function App() {
               provider={provider}
               signer={signer}
             />
-            <p className="account">{userAccount}</p>
+            <Plot
+              cropInt={cropInt}
+              plotNum={5}
+              userAccount={userAccount}
+              provider={provider}
+              signer={signer}
+            />
           </div>
         </main>
         {isWalletConnected ? (
@@ -111,13 +107,10 @@ function App() {
             setCropInt={setCropInt}
             userAccount={userAccount}
             provider={provider}
+            signer={signer}
           />
         ) : (
-          <Button
-            variant="contained"
-            label="Connect wallet"
-            onClick={connectWallet}
-          />
+          <Button variant="contained" label="Connect" onClick={connectWallet} />
         )}
       </ThemeProvider>
     </div>

@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/willzzz/Documents/GitHub/block-crops/Backend/contracts/Token.sol": {
-      "lastModificationDate": 1659929384092,
-      "contentHash": "90fa790033d1830a3e9082933205d831",
+      "lastModificationDate": 1660010119096,
+      "contentHash": "dd9a6414e7f98a83d09c856f4013a34d",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.1",

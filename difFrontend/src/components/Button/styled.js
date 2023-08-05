@@ -10,9 +10,10 @@ export const CustomizedButton = styled(Button)(
             font-size: 14px;
         }
         position: absolute;
-        bottom: 25px;
-        right: 25px;
+        bottom: 5px;
+        right: 5px;
         border-radius: 8px;
-        min-width: 106px;
+        width: 90px;
+        height: 25px;
     `
 );

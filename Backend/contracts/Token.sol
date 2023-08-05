@@ -20,7 +20,8 @@ contract CropFarm is ERC1155, ERC1155Supply {
     uint256 public constant TOMATO = 9;
     uint256 public constant CAULIFLOWER = 10;
     uint256 public constant EGGPLANT = 11;
-    uint256 public constant CHILIPEPPER = 12;
+    uint256 public constant CARROT = 12;
+    address public Owner = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
 
     constructor()
         ERC1155("https://blockcrops.s3.amazonaws.com/tokens/{id}.png")
@@ -36,7 +37,7 @@ contract CropFarm is ERC1155, ERC1155Supply {
         _mint(msg.sender, TOMATO, 1000, "");
         _mint(msg.sender, CAULIFLOWER, 1000, "");
         _mint(msg.sender, EGGPLANT, 1000, "");
-        _mint(msg.sender, CHILIPEPPER, 1000, "");
+        _mint(msg.sender, CARROT, 1000, "");
 
         // id, growtime, harvest
         uint256[39] memory cropInitInt = [
@@ -76,7 +77,7 @@ contract CropFarm is ERC1155, ERC1155Supply {
             EGGPLANT,
             100,
             4,
-            CHILIPEPPER,
+            CARROT,
             500,
             6
         ];
@@ -118,7 +119,7 @@ contract CropFarm is ERC1155, ERC1155Supply {
         balances[msg.sender][TOMATO].availableBalance = 1000;
         balances[msg.sender][CAULIFLOWER].availableBalance = 1000;
         balances[msg.sender][EGGPLANT].availableBalance = 1000;
-        balances[msg.sender][CHILIPEPPER].availableBalance = 1000;
+        balances[msg.sender][CARROT].availableBalance = 1000;
     }
 
     // user's available VS planted balance (for each crop)
@@ -161,6 +162,10 @@ contract CropFarm is ERC1155, ERC1155Supply {
     //      ^ crop id
 
     mapping(address => uint256) public plotnum;
+
+    mapping(address => bool) public hasPlanted;
+
+    mapping(address => uint8) public plotsBought;
 
     function _safeTransferFrom(
         address from,
@@ -214,16 +219,18 @@ contract CropFarm is ERC1155, ERC1155Supply {
             "Not enough crops to plant!"
         );
         // first time user plants, set starting plot num
-        if (plotnum[msg.sender] == 0) {
+        if (!hasPlanted[msg.sender]) {
             plotnum[msg.sender] = 3;
+            hasPlanted[msg.sender] = true;
         }
-        require(_plot < plotnum[msg.sender], "You don't own enough land!");
+        require(plotnum[msg.sender] > 0, "You don't own enough land!");
         require(
             _plots[msg.sender].crops[_plot].exists != true,
             "This plot is not empty!"
         );
         balances[msg.sender][_id].availableBalance -= 1;
         balances[msg.sender][_id].stakedBalance += 1;
+        plotnum[msg.sender] -= 1;
 
         Crop storage plot = _plots[msg.sender].crops[_plot];
         plot.stakeDate = block.timestamp;
@@ -246,21 +253,23 @@ contract CropFarm is ERC1155, ERC1155Supply {
         delete _plots[msg.sender].crops[_plot];
         balances[msg.sender][cropId].stakedBalance -= 1;
         balances[msg.sender][cropId].availableBalance += crops[cropId].harvest;
+        plotnum[msg.sender] += 1;
     }
 
     function buyPlot() public payable {
         require(
-            plotnum[msg.sender] >= 3,
+            hasPlanted[msg.sender],
             "User must plant crops once before purchasing _plots!"
         );
+        _safeTransferFrom(msg.sender, Owner, TOMATO, 10, "");
         _newPlot(msg.sender);
-        _safeTransferFrom(msg.sender, address(this), TOMATO, 10, "");
     }
 
     // change to internal for deployment
     function _newPlot(address _account) internal {
-        require(plotnum[_account] <= 10, "Can't increase number of _plots.");
+        require(plotsBought[msg.sender] < 3, "Maximum 6 plots allowed.");
         plotnum[_account] += 1;
+        plotsBought[msg.sender] += 1;
     }
 
     function viewGrowStatus(address _account, uint256 _plot)

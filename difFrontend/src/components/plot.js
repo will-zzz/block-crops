@@ -14,8 +14,8 @@ const cropIdToName = [
   "lettuce",
   "tomato",
   "cauliflower",
-  "egglplant",
-  "chilipepper",
+  "eggplant",
+  "carrot",
 ];
 
 const tokenAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
@@ -64,7 +64,7 @@ export default function Plot(props) {
         setImage(
           "https://blockcrops.s3.amazonaws.com/images/" + cropName + "2.png"
         );
-      } else if (0.75 < percentage < 0.1) {
+      } else if (0.75 < percentage < 1) {
         setImage(
           "https://blockcrops.s3.amazonaws.com/images/" + cropName + "3.png"
         );
@@ -116,5 +116,7 @@ export default function Plot(props) {
     return () => clearInterval(interval);
   }, [props.userAccount, cropInt, cropName, props.provider, props.signer]);
 
-  return <img src={image} onClick={handleClick} className="plot" />;
+  return (
+    <img src={image} onClick={handleClick} className="w-[48px] h-[48px]" />
+  );
 }

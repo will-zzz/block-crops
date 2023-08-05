@@ -13,29 +13,30 @@ export const CustomizedButton = styled(Button)(
         bottom: 25px;
         right: 25px;
         border-radius: 8px;
-        min-width: 106px;
+        max-width: 106px;
     `
 );
 
 export const MenuExpanded = styled(Paper)(
   ({ theme }) => `
         position: absolute;
-        right: 15px;
-        bottom: 15px;
+        right: 0px;
+        bottom: 0px;
         padding: 32px;
-        width: 30vw;
+        width: 350px;
+        height: 675px;
         border-radius: 8px;
-        .MuiGrid-container {
-            width: 75%;
-            .MuiGrid-item {
-                margin: 10px;
-                .MuiCardContent-root {
-                    background-color: ${theme.palette.background.default};
-                    color: #fff;
-                    font-weight: 500;
-                    text-align: center;
-                }
-            }
-        }
+        // .MuiGrid-container {
+        //     width: 75%;
+        //     .MuiGrid-item {
+        //         margin: 10px;
+        //         .MuiCardContent-root {
+        //             background-color: ${theme.palette.background.default};
+        //             color: #fff;
+        //             font-weight: 500;
+        //             text-align: center;
+        //         }
+        //     }
+        // }
     `
 );
